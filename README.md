@@ -13,7 +13,7 @@ Application getting sightseeing information if an area (in Japan) will be sunny 
 
 ## List of RSS feed using in this application
 
-**Yahoo! Weather RSS feed** x **Sightseeing infomation produced by http://guide.travel.co.jp **
+Yahoo! Weather RSS feed x Sightseeing infomation produced by http://guide.travel.co.jp
 
 * 北海道(札幌)
   * http://rss.weather.yahoo.co.jp/rss/days/1400.xml
