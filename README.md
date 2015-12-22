@@ -4,33 +4,47 @@ Application getting sightseeing information if an area (in Japan) will be sunny 
 
 データ記述とXML最終課題
 
-## Summary
+## 概要 (日本語)
 
 週末の天気予報が晴れの地点の観光情報を取得するアプリケーション
 
 * 日本各地の天気情報のRSSフィードから、週末の天気が晴れの地点を得る
-* 晴れの地点の観光情報を各観光協会の提供するRSSフィードから得る
+* 週末が晴れの地点の観光情報を[Travel.jp たびねす](http://guide.travel.co.jp/)の提供するRSSフィードから得る
 
-## List of RSS feed used in this application
+## List of RSS feed using in this application
 
-Yahoo! Weather RSS feed
+**Yahoo! Weather RSS feed** x **RSS feeds from tourism associations in Japan**
 
 * 北海道(札幌)
+  * [http://rss.weather.yahoo.co.jp/rss/days/1400.xml]()
+  * [http://guide.travel.co.jp/feed/archive/r1/]()
 * 東北(仙台)
+  * [http://rss.weather.yahoo.co.jp/rss/days/3410.xml]()
+  * [http://guide.travel.co.jp/feed/archive/r2/]()
 * 関東(東京)
-* 北陸(新潟)
+  * [http://rss.weather.yahoo.co.jp/rss/days/4410.xml]()
+  * [http://guide.travel.co.jp/feed/archive/r3/]()
+* 信州・信越(新潟)
+  * [http://rss.weather.yahoo.co.jp/rss/days/5410.xml]()
+  * [http://guide.travel.co.jp/feed/archive/r4/]()
 * 東海(名古屋)
+  * [http://rss.weather.yahoo.co.jp/rss/days/5110.xml]()
+  * [http://guide.travel.co.jp/feed/archive/r5/]()
+* 北陸(石川)
+  * [http://rss.weather.yahoo.co.jp/rss/days/5610.xml]()
+  * [http://guide.travel.co.jp/feed/archive/r6/]()
 * 近畿(大阪)
+  * [http://rss.weather.yahoo.co.jp/rss/days/6200.xml]()
+  * [http://guide.travel.co.jp/feed/archive/r7/]()
 * 中国(岡山)
+  * [http://rss.weather.yahoo.co.jp/rss/days/6610.xml]()
+  * [http://guide.travel.co.jp/feed/archive/r8/]()
 * 四国(高松)
+  * [http://rss.weather.yahoo.co.jp/rss/days/7200.xml]()
+  * [http://guide.travel.co.jp/feed/archive/r9/]()
 * 九州(福岡)
+  * [http://rss.weather.yahoo.co.jp/rss/days/8210.xml]()
+  * [http://guide.travel.co.jp/feed/archive/r10/]()
 * 沖縄(那覇)
-
-日本各地の観光情報のRSSフィード
-
-(example)
-
-* [RSSについて｜観光三重（かんこうみえ）｜三重県（伊勢・鳥羽・鈴鹿・津・伊賀・松阪など）の旅行情報はここ！](https://www.kankomie.or.jp/about/rss.html)
-* [RSSについて ---兵庫県観光情報--ひょうごツーリズムガイド---](http://www.hyogo-tourism.jp/rss/)
-* [伊豆市観光情報HPは、RSS配信を始めました｜伊豆市観光情報](http://kanko.city.izu.shizuoka.jp/form1.html?pid=4215)
-
+  * [http://rss.weather.yahoo.co.jp/rss/days/9110.xml]()
+  * [http://guide.travel.co.jp/feed/archive/p47/]()
