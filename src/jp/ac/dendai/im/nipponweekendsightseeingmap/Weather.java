@@ -2,7 +2,7 @@ package jp.ac.dendai.im.nipponweekendsightseeingmap;
 
 import jp.ac.dendai.im.web.Item;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by keisei on 12/22/15.
@@ -26,28 +26,28 @@ public class Weather {
      * 土曜日の天気をチェックする
      * 「晴のち雨」「晴時々雪」とかあるのでそれらは除外
      * TODO: 土曜日の天気チェックするだけじゃ週末観光マップじゃないよね
+     * TODO: 土曜の天気と日曜の天気がどちらも晴の地域を取るようにする
      * @return 晴れかどうかの配列
      */
-    public boolean[] checkWeekend() {
+    public List<Integer> checkWeekend() {
         FeedFactory ff = new FeedFactory();
-        boolean hoge[] = new boolean[7];
+        List<Integer> sunnySpots = new ArrayList<>();
 
         for (int i = 0; i < WEATHER_FEEDS.length; i++) {
             List<Item> list = ff.fetchItems(WEATHER_FEEDS[i]);
-            for (int r = 0; r < list.size(); r++) {
-                if (list.get(r).getPubDate().contains("Sat")) {
+            for (int j = 0; j < list.size(); j++) {
+                if (list.get(j).getTitle().contains("土")) {
                     if (
-                            !list.get(r).getDescription().contains("雨")
-                            && list.get(r).getDescription().contains("雪")
-                            && list.get(r).getDescription().contains("晴")
+                            !list.get(j).getDescription().contains("雨")
+                            && !list.get(j).getDescription().contains("雪")
+                            && list.get(j).getDescription().contains("晴")
                         ) {
-                        hoge[i] = true;
+                        sunnySpots.add(i);
                         continue;
                     }
                 }
             }
-            hoge[i] = false;
         }
-        return hoge;
+        return sunnySpots;
     }
 }
