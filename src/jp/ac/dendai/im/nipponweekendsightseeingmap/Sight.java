@@ -30,21 +30,23 @@ public class Sight {
      */
     public List<String> fetchSightListFromAreasList(List<Integer> sunnySpotList) {
         FeedFactory ff = new FeedFactory();
-        List<Item> sightItems = new ArrayList<>();
+        List<Item> sightItemsAll = new ArrayList<>();
+        List<Item> sightItems;
+        // sunnySpotListに値が入っていなかったら警告
         if (sunnySpotList.size() == 0) {
             System.out.println("週末晴れの地点はありません。");
         }
+        // sunnySpotListの値から対応した地域のRSSフィードをたたく
         for (int i = 0; i < sunnySpotList.size(); i++) {
             System.out.println(
                 "週末の "
                 + convertNumberToAreaString(sunnySpotList.get(i))
-                + " 地方は晴の模様です。観光情報を検索します。"
+                + "地方は晴の模様です。観光情報を検索します。"
             );
-            sightItems.addAll(
-                    ff.fetchItems(SIGHT_FEEDS[sunnySpotList.get(i)])
-            );
+            sightItems = ff.fetchItems(SIGHT_FEEDS[sunnySpotList.get(i)]).subList(0, 10);
+            sightItemsAll.addAll(sightItems);
         }
-        List<String> sightStrings = convertItemsListToStringsList(sunnySpotList, sightItems);
+        List<String> sightStrings = convertItemsListToStringsList(sunnySpotList, sightItemsAll);
         return sightStrings;
     }
 
@@ -56,12 +58,13 @@ public class Sight {
      */
     private List<String> convertItemsListToStringsList(List<Integer> sunnySpotList, List<Item> listItems) {
         List<String> listString = new ArrayList<>();
+        String title;
         for (int i = 0; i < sunnySpotList.size(); i++) {
             for (int j = 0; j < listItems.size(); j++) {
-                listString.add(
-                    convertNumberToAreaString(sunnySpotList.get(i))
-                    + listItems.get(j).getTitle()
-                );
+                title = convertNumberToAreaString(sunnySpotList.get(i))
+                        + listItems.get(j).getTitle();
+                title = title.substring(0, title.length() - 13);
+                listString.add(title);
             }
         }
         return listString;
