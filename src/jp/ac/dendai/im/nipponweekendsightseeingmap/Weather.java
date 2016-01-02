@@ -23,7 +23,7 @@ public class Weather {
     };
 
     /**
-     * 土曜日の天気をチェックする
+     * 週末の天気をチェックする
      * 「晴のち雨」「晴時々雪」とかあるのでそれらは除外
      * TODO: 土曜日の天気チェックするだけじゃ週末観光マップじゃないよね
      * TODO: 土曜の天気と日曜の天気がどちらも晴の地域を取るようにする
@@ -33,8 +33,11 @@ public class Weather {
         FeedFactory ff = new FeedFactory();
         List<Integer> sunnySpots = new ArrayList<>();
 
+        // 地域ごと
         for (int i = 0; i < WEATHER_FEEDS.length; i++) {
+            // 天気RSSのURLをたたいてListへ
             List<Item> list = ff.fetchItems(WEATHER_FEEDS[i]);
+            // フィード参照して土曜日の天気が晴れだったらsunnySpotListに地域番号を入れる
             for (int j = 0; j < list.size(); j++) {
                 if (list.get(j).getTitle().contains("土")) {
                     if (
