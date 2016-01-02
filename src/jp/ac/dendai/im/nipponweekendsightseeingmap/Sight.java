@@ -29,13 +29,15 @@ public class Sight {
      * @return 観光情報リスト
      */
     public List<String> fetchSightListFromAreasList(List<Integer> sunnySpotList) {
-        FeedFactory ff = new FeedFactory();
-        List<Item> sightItemsAll = new ArrayList<>();
-        List<Item> sightItems;
         // sunnySpotListに値が入っていなかったら警告
         if (sunnySpotList.size() == 0) {
             System.out.println("週末晴れの地点はありません。");
         }
+
+        FeedFactory ff = new FeedFactory();
+        List<Item> sightItems;
+        List<String> sightStrings = new ArrayList<>();
+
         // sunnySpotListの値から対応した地域のRSSフィードをたたく
         for (int i = 0; i < sunnySpotList.size(); i++) {
             System.out.println(
@@ -43,29 +45,27 @@ public class Sight {
                 + convertNumberToAreaString(sunnySpotList.get(i))
                 + "地方は晴の模様です。観光情報を検索します。"
             );
-            sightItemsAll.addAll(sightItems);
             sightItems = ff.fetchItems(SIGHT_FEEDS[sunnySpotList.get(i)]).subList(0, Main.SIGHTLIST_LENGTH);
+            sightStrings.addAll(convertItemsListToStringsList(sunnySpotList.get(i), sightItems));
         }
-        List<String> sightStrings = convertItemsListToStringsList(sunnySpotList, sightItemsAll);
+
         return sightStrings;
     }
 
     /**
-     * フィードアイテムのリストからタイトルを返す
-     * @param sunnySpotList 晴の地域番号リスト
+     * フィードアイテムのリストからタイトルを作る
+     * @param area 晴の地域番号
      * @param listItems フィードアイテムのリスト
      * @return "[(地域)] (タイトル)"のList
      */
-    private List<String> convertItemsListToStringsList(List<Integer> sunnySpotList, List<Item> listItems) {
+    private List<String> convertItemsListToStringsList(int area, List<Item> listItems) {
         List<String> listString = new ArrayList<>();
         String title;
-        for (int i = 0; i < sunnySpotList.size(); i++) {
-            for (int j = 0; j < listItems.size(); j++) {
-                title = convertNumberToAreaString(sunnySpotList.get(i))
-                        + listItems.get(j).getTitle();
-                title = title.substring(0, title.length() - 13);
-                listString.add(title);
-            }
+        for (int j = 0; j < listItems.size(); j++) {
+            title = convertNumberToAreaString(area)
+                    + listItems.get(j).getTitle();
+            title = title.substring(0, title.length() - 13);
+            listString.add(title);
         }
         return listString;
     }
