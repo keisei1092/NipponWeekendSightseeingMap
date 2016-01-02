@@ -43,8 +43,8 @@ public class Sight {
                 + convertNumberToAreaString(sunnySpotList.get(i))
                 + "地方は晴の模様です。観光情報を検索します。"
             );
-            sightItems = ff.fetchItems(SIGHT_FEEDS[sunnySpotList.get(i)]).subList(0, 10);
             sightItemsAll.addAll(sightItems);
+            sightItems = ff.fetchItems(SIGHT_FEEDS[sunnySpotList.get(i)]).subList(0, Main.SIGHTLIST_LENGTH);
         }
         List<String> sightStrings = convertItemsListToStringsList(sunnySpotList, sightItemsAll);
         return sightStrings;
